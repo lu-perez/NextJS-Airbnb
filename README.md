@@ -22,18 +22,30 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Prisma
 
+* Install
+
 ```bash
 npm i -D prisma
+npm i @prisma/client
 ```
 
-### init Prisma
+* Initialize Prisma
 
 ```bash
 npx prisma init
 ```
 
-### push DB prisma
+* Push DB prisma
 
 ```bash
 npx prisma db push
+```
+
+## Next-Auth
+
+* Install
+
+```
+npm i next-auth
+npm i @next-auth/prisma-adapter
 ```
