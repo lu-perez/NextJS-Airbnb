@@ -3,11 +3,11 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import prismaClient from '@/app/libs/prismadb'
+import prisma from '@/app/libs/prismadb'
 import bcrypt from 'bcrypt'
 
 export const authOptions: AuthOptions = { 
-  adapter: PrismaAdapter(prismaClient),
+  adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
@@ -28,7 +28,7 @@ export const authOptions: AuthOptions = {
           throw new Error('Invalid credentials')
         }
 
-        const user = await prismaClient.user.findUnique({
+        const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
           }
