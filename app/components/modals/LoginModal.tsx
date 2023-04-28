@@ -44,13 +44,15 @@ const LoginModal = () => {
     })
       .then((callback) => {
         setIsLoading(false)
+        if (callback?.error) {
+          toast.error(callback.error)
+          return
+        }
         if (callback?.ok) {
+          console.log(callback)
           toast.success('Logged in')
           router.refresh()
           loginModal.onClose()
-        }
-        if (callback?.error) {
-          toast.error(callback.error)
         }
       })
   }
