@@ -1,9 +1,9 @@
-import useCountries from '@/app/hooks/useCountries'
-import { SafeUser } from '@/app/types'
-import React from 'react'
-import Heading from '../Heading'
-import Image from 'next/image'
-import HeartButton from '../HeartButton'
+import useCountries from '@/app/hooks/useCountries';
+import { SafeUser } from '@/app/types';
+import React from 'react';
+import Heading from '../Heading';
+import Image from 'next/image';
+import HeartButton from '../HeartButton';
 
 interface ListingHeadProps {
   title: string
@@ -20,8 +20,8 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   id,
   currentUser
 }) => {
-  const { getByValue } = useCountries()
-  const location = getByValue(locationValue)
+  const { getByValue } = useCountries();
+  const location = getByValue(locationValue);
 
   return (
     <>
@@ -52,7 +52,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ListingHead
+export default ListingHead;

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 interface HeadingProps {
   title: string
@@ -20,7 +20,7 @@ const Heading: React.FC<HeadingProps> = ({
         {subtitle}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Heading
+export default Heading;

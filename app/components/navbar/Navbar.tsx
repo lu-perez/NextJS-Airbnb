@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import Container from '../Container'
-import Logo from './Logo'
-import Search from './Search'
-import UserMenu from './UserMenu'
-import React from 'react'
-import Categories from './Categories'
-import { SafeUser } from '@/app/types'
+import Container from '../Container';
+import Logo from './Logo';
+import Search from './Search';
+import UserMenu from './UserMenu';
+import React from 'react';
+import Categories from './Categories';
+import { SafeUser } from '@/app/types';
 
 interface NavbarProps {
   currentUser?: SafeUser | null
@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
       </div>
       <Categories />
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

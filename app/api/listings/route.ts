@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/actions/getCurrentUser";
+import prisma from '@/app/libs/prismadb';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export async function POST(
-  request: Request, 
+  request: Request,
 ) {
   const currentUser = await getCurrentUser();
 
@@ -13,7 +13,7 @@ export async function POST(
   }
 
   const body = await request.json();
-  const { 
+  const {
     title,
     description,
     imageSrc,
@@ -23,7 +23,7 @@ export async function POST(
     guestCount,
     location,
     price,
-   } = body;
+  } = body;
 
   Object.keys(body).forEach((value: any) => {
     if (!body[value]) {

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 interface MenuItemProps {
   onClick: () => void
@@ -8,8 +8,8 @@ interface MenuItemProps {
 const MenuItem: React.FC<MenuItemProps> = ({ onClick, label }) => {
   return (
     <div
-    onClick={onClick}
-    className='
+      onClick={onClick}
+      className='
       px-4
       py-3
       hover:bg-neutral-100
@@ -18,7 +18,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ onClick, label }) => {
     >
       {label}
     </div>
-  )
-}
+  );
+};
 
-export default MenuItem
+export default MenuItem;

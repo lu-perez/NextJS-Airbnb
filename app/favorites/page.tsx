@@ -1,7 +1,7 @@
-import EmptyState from "@/app/components/EmptyState";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getFavoriteListings from "@/app/actions/getFavoriteListings";
-import FavoritesClient from "./FavoritesClient";
+import EmptyState from '@/app/components/EmptyState';
+import getCurrentUser from '@/app/actions/getCurrentUser';
+import getFavoriteListings from '@/app/actions/getFavoriteListings';
+import FavoritesClient from './FavoritesClient';
 
 const ListingPage = async () => {
   const listings = await getFavoriteListings();
@@ -22,6 +22,6 @@ const ListingPage = async () => {
       currentUser={currentUser}
     />
   );
-}
+};
 
 export default ListingPage;

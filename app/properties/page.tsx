@@ -1,7 +1,7 @@
-import EmptyState from "@/app/components/EmptyState";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import PropertiesClient from "./PropertiesClient";
-import getListings from '../actions/getListings'
+import EmptyState from '@/app/components/EmptyState';
+import getCurrentUser from '@/app/actions/getCurrentUser';
+import PropertiesClient from './PropertiesClient';
+import getListings from '../actions/getListings';
 
 const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
@@ -32,6 +32,6 @@ const PropertiesPage = async () => {
       currentUser={currentUser}
     />
   );
-}
- 
+};
+
 export default PropertiesPage;

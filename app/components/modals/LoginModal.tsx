@@ -1,28 +1,28 @@
-'use client'
+'use client';
 
-import { signIn } from 'next-auth/react'
-import { AiFillGithub } from 'react-icons/ai'
-import { FcGoogle } from 'react-icons/fc'
-import { useState, useCallback } from 'react'
+import { signIn } from 'next-auth/react';
+import { AiFillGithub } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
+import { useState, useCallback } from 'react';
 import {
   FieldValues,
   SubmitHandler,
   useForm
-} from 'react-hook-form'
-import useRegisterModal from '@/app/hooks/useRegisterModal'
-import useLoginModal from '@/app/hooks/useLoginModal'
-import Modal from './Modal'
-import Heading from '../Heading'
-import Input from '../inputs/Input'
-import { toast } from 'react-hot-toast'
-import Button from '../Button'
-import { useRouter } from 'next/navigation'
+} from 'react-hook-form';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
+import Modal from './Modal';
+import Heading from '../Heading';
+import Input from '../inputs/Input';
+import { toast } from 'react-hot-toast';
+import Button from '../Button';
+import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
-  const router = useRouter()
-  const registerModal = useRegisterModal()
-  const loginModal = useLoginModal()
-  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter();
+  const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -34,33 +34,33 @@ const LoginModal = () => {
       email: '',
       password: ''
     }
-  })
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true)
+    setIsLoading(true);
     signIn('credentials', {
       ...data,
       redirect: false
     })
       .then((callback) => {
-        setIsLoading(false)
+        setIsLoading(false);
         if (callback?.error) {
-          toast.error(callback.error)
-          return
+          toast.error(callback.error);
+          return;
         }
         if (callback?.ok) {
-          console.log(callback)
-          toast.success('Logged in')
-          router.refresh()
-          loginModal.onClose()
+          console.log(callback);
+          toast.success('Logged in');
+          router.refresh();
+          loginModal.onClose();
         }
-      })
-  }
+      });
+  };
 
   const toggle = useCallback(() => {
-    loginModal.onClose()
-    registerModal.onOpen()
-  }, [loginModal, registerModal])
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>
@@ -85,7 +85,7 @@ const LoginModal = () => {
         required
       />
     </div>
-  )
+  );
 
   const footerContent = (
     <div className='flex flex-col gap-4 mt-3'>
@@ -116,7 +116,7 @@ const LoginModal = () => {
         </div>
       </div>
     </div>
-  )
+  );
 
   return (
     <Modal
@@ -129,7 +129,7 @@ const LoginModal = () => {
       body={bodyContent}
       footer={footerContent}
     />
-  )
-}
+  );
+};
 
-export default LoginModal
+export default LoginModal;

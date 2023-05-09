@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
-import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/actions/getCurrentUser";
+import { NextResponse } from 'next/server';
+import prisma from '@/app/libs/prismadb';
+import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export async function POST(
-  request: Request, 
+  request: Request,
 ) {
   const currentUser = await getCurrentUser();
 
@@ -12,14 +12,14 @@ export async function POST(
   }
 
   const body = await request.json();
-  const { 
+  const {
     listingId,
     startDate,
     endDate,
     totalPrice
-   } = body;
+  } = body;
 
-   if (!listingId || !startDate || !endDate || !totalPrice) {
+  if (!listingId || !startDate || !endDate || !totalPrice) {
     return NextResponse.error();
   }
 

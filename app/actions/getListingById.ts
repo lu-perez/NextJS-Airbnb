@@ -1,4 +1,4 @@
-import prisma from '@/app/libs/prismadb'
+import prisma from '@/app/libs/prismadb';
 
 interface IParams {
   listingId?: string
@@ -8,18 +8,18 @@ export default async function getListingById(
   params: IParams
 ) {
   try {
-    const { listingId } = params
+    const { listingId } = params;
     const listing = await prisma.listing.findUnique({
-      where: { 
+      where: {
         id: listingId
       },
       include: {
         user: true
       }
-    })
+    });
 
     if (!listing) {
-      return null
+      return null;
     }
     return {
       ...listing,
@@ -30,8 +30,8 @@ export default async function getListingById(
         updatedAt: listing.user.updatedAt.toISOString(),
         emailVerified: listing.user.emailVerified?.toISOString() || null
       }
-    }
+    };
   } catch (error: any) {
-    throw new Error(error)
+    throw new Error(error);
   }
 }

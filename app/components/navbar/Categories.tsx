@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Container from '../Container'
-import { IoDiamond } from 'react-icons/io5'
-import { BsSnow } from 'react-icons/bs'
-import { FaSkiing } from 'react-icons/fa'
-import { TbBeach, TbMountain, TbPool } from 'react-icons/tb'
-import { GiBarn, GiBoatFishing, GiCactus, GiCastle, GiCaveEntrance, GiForestCamp, GiIsland, GiWindmill } from 'react-icons/gi'
-import { MdOutlineVilla } from 'react-icons/md'
-import CategoryBox from '../CategoryBox'
-import { usePathname, useSearchParams } from 'next/navigation'
+import React from 'react';
+import Container from '../Container';
+import { IoDiamond } from 'react-icons/io5';
+import { BsSnow } from 'react-icons/bs';
+import { FaSkiing } from 'react-icons/fa';
+import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
+import { GiBarn, GiBoatFishing, GiCactus, GiCastle, GiCaveEntrance, GiForestCamp, GiIsland, GiWindmill } from 'react-icons/gi';
+import { MdOutlineVilla } from 'react-icons/md';
+import CategoryBox from '../CategoryBox';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export const categories = [
   {
@@ -87,18 +87,18 @@ export const categories = [
     icon: IoDiamond,
     description: 'This property is luxurious!'
   }
-]
+];
 
 const Categories = () => {
-  const params = useSearchParams()
+  const params = useSearchParams();
 
-  const category = params?.get('category')
-  const pathname = usePathname()
+  const category = params?.get('category');
+  const pathname = usePathname();
 
-  const isMainPage = pathname === '/'
+  const isMainPage = pathname === '/';
 
   if (!isMainPage) {
-    return null
+    return null;
   }
 
   return (
@@ -123,7 +123,7 @@ const Categories = () => {
         ))}
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

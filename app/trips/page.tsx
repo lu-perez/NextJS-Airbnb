@@ -1,7 +1,7 @@
-import EmptyState from "@/app/components/EmptyState";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getReservations from "@/app/actions/getReservations";
-import TripsClient from "./TripsClient";
+import EmptyState from '@/app/components/EmptyState';
+import getCurrentUser from '@/app/actions/getCurrentUser';
+import getReservations from '@/app/actions/getReservations';
+import TripsClient from './TripsClient';
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -32,6 +32,6 @@ const TripsPage = async () => {
       currentUser={currentUser}
     />
   );
-}
- 
+};
+
 export default TripsPage;

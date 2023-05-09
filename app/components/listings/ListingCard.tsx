@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import React, { useCallback, useMemo } from 'react'
-import { Listing, Reservation } from '@prisma/client'
-import { useRouter } from 'next/navigation'
-import useCountries from '@/app/hooks/useCountries'
-import { format } from 'date-fns'
-import Image from 'next/image'
-import HeartButton from '../HeartButton'
-import Button from '../Button'
-import { SafeListing, SafeUser } from '@/app/types'
+import React, { useCallback, useMemo } from 'react';
+import { Listing, Reservation } from '@prisma/client';
+import { useRouter } from 'next/navigation';
+import useCountries from '@/app/hooks/useCountries';
+import { format } from 'date-fns';
+import Image from 'next/image';
+import HeartButton from '../HeartButton';
+import Button from '../Button';
+import { SafeListing, SafeUser } from '@/app/types';
 
 interface ListingCardProps {
   data: SafeListing
@@ -29,35 +29,35 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionId = '',
   currentUser
 }) => {
-  const router = useRouter()
-  const { getByValue } = useCountries()
+  const router = useRouter();
+  const { getByValue } = useCountries();
 
-  const location = getByValue(data.locationValue)
+  const location = getByValue(data.locationValue);
 
   const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
+    e.stopPropagation();
     if (disabled) {
-      return
+      return;
     }
-    onAction?.(actionId)
-  }, [onAction, actionId, disabled])
+    onAction?.(actionId);
+  }, [onAction, actionId, disabled]);
 
   const price = useMemo(() => {
     if (reservation) {
-      return reservation.totalPrice
+      return reservation.totalPrice;
     }
-    return data.price
-  }, [reservation, data.price])
+    return data.price;
+  }, [reservation, data.price]);
 
   const reservationDate = useMemo(() => {
     if (!reservation) {
-      return null
+      return null;
     }
-    const start = new Date(reservation.startDate)
-    const end = new Date(reservation.endDate)
+    const start = new Date(reservation.startDate);
+    const end = new Date(reservation.endDate);
 
-    return `${format(start, 'PP')} - ${format(end, 'PP')}`
-  }, [reservation])
+    return `${format(start, 'PP')} - ${format(end, 'PP')}`;
+  }, [reservation]);
 
   return (
     <div
@@ -119,7 +119,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ListingCard
+export default ListingCard;

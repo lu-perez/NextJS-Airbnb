@@ -1,15 +1,15 @@
 'use client';
 
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import { useCallback, useState } from "react";
-import { useRouter } from "next/navigation";
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
+import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeListing, SafeUser } from '@/app/types';
 
-import Heading from "@/app/components/Heading";
-import Container from "@/app/components/Container";
-import ListingCard from "@/app/components/listings/ListingCard";
+import Heading from '@/app/components/Heading';
+import Container from '@/app/components/Container';
+import ListingCard from '@/app/components/listings/ListingCard';
 
 interface PropertiesClientProps {
   listings: SafeListing[],
@@ -27,32 +27,31 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
     setDeletingId(id);
 
     axios.delete(`/api/listings/${id}`)
-    .then(() => {
-      toast.success('Listing deleted');
-      router.refresh();
-    })
-    .catch((error) => {
-      toast.error(error?.response?.data?.error)
-    })
-    .finally(() => {
-      setDeletingId('');
-    })
+      .then(() => {
+        toast.success('Listing deleted');
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.error);
+      })
+      .finally(() => {
+        setDeletingId('');
+      });
   }, [router]);
 
-
-  return ( 
+  return (
     <Container>
       <Heading
         title="Properties"
         subtitle="List of your properties"
       />
-      <div 
+      <div
         className="
           mt-10
-          grid 
-          grid-cols-1 
-          sm:grid-cols-2 
-          md:grid-cols-3 
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          md:grid-cols-3
           lg:grid-cols-4
           xl:grid-cols-5
           2xl:grid-cols-6
@@ -72,7 +71,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
         ))}
       </div>
     </Container>
-   );
-}
- 
+  );
+};
+
 export default PropertiesClient;

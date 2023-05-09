@@ -1,20 +1,20 @@
 'use client';
 
 import qs from 'query-string';
-import dynamic from 'next/dynamic'
-import { useCallback, useMemo, useState } from "react";
+import dynamic from 'next/dynamic';
+import { useCallback, useMemo, useState } from 'react';
 import { Range } from 'react-date-range';
 import { formatISO } from 'date-fns';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import useSearchModal from "@/app/hooks/useSearchModal";
+import useSearchModal from '@/app/hooks/useSearchModal';
 
-import Modal from "./Modal";
-import Calendar from "../inputs/Calendar";
-import Counter from "../inputs/Counter";
-import CountrySelect, { 
+import Modal from './Modal';
+import Calendar from '../inputs/Calendar';
+import Counter from '../inputs/Counter';
+import CountrySelect, {
   CountrySelectValue
-} from "../inputs/CountrySelect";
+} from '../inputs/CountrySelect';
 import Heading from '../Heading';
 
 enum STEPS {
@@ -40,8 +40,8 @@ const SearchModal = () => {
     key: 'selection'
   });
 
-  const Map = useMemo(() => dynamic(() => import('../Map'), { 
-    ssr: false 
+  const Map = useMemo(() => dynamic(() => import('../Map'), {
+    ssr: false
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [location]);
 
@@ -61,7 +61,7 @@ const SearchModal = () => {
     let currentQuery = {};
 
     if (params) {
-      currentQuery = qs.parse(params.toString())
+      currentQuery = qs.parse(params.toString());
     }
 
     const updatedQuery: any = {
@@ -88,13 +88,13 @@ const SearchModal = () => {
     setStep(STEPS.LOCATION);
     searchModal.onClose();
     router.push(url);
-  }, 
+  },
   [
-    step, 
-    searchModal, 
-    location, 
-    router, 
-    guestCount, 
+    step,
+    searchModal,
+    location,
+    router,
+    guestCount,
     roomCount,
     dateRange,
     onNext,
@@ -104,18 +104,18 @@ const SearchModal = () => {
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.INFO) {
-      return 'Search'
+      return 'Search';
     }
 
-    return 'Next'
+    return 'Next';
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
     if (step === STEPS.LOCATION) {
-      return undefined
+      return undefined;
     }
 
-    return 'Back'
+    return 'Back';
   }, [step]);
 
   let bodyContent = (
@@ -124,15 +124,15 @@ const SearchModal = () => {
         title="Where do you wanna go?"
         subtitle="Find the perfect location!"
       />
-      <CountrySelect 
-        value={location} 
-        onChange={(value) => 
-          setLocation(value as CountrySelectValue)} 
+      <CountrySelect
+        value={location}
+        onChange={(value) =>
+          setLocation(value as CountrySelectValue)}
       />
       <hr />
       <Map center={location?.latlng} />
     </div>
-  )
+  );
 
   if (step === STEPS.DATE) {
     bodyContent = (
@@ -146,7 +146,7 @@ const SearchModal = () => {
           value={dateRange}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.INFO) {
@@ -156,30 +156,30 @@ const SearchModal = () => {
           title="More information"
           subtitle="Find your perfect place!"
         />
-        <Counter 
+        <Counter
           onChange={(value) => setGuestCount(value)}
           value={guestCount}
-          title="Guests" 
+          title="Guests"
           subtitle="How many guests are coming?"
         />
         <hr />
-        <Counter 
+        <Counter
           onChange={(value) => setRoomCount(value)}
           value={roomCount}
-          title="Rooms" 
+          title="Rooms"
           subtitle="How many rooms do you need?"
-        />        
+        />
         <hr />
-        <Counter 
+        <Counter
           onChange={(value) => {
-            setBathroomCount(value)
+            setBathroomCount(value);
           }}
           value={bathroomCount}
           title="Bathrooms"
           subtitle="How many bahtrooms do you need?"
         />
       </div>
-    )
+    );
   }
 
   return (
@@ -194,6 +194,6 @@ const SearchModal = () => {
       body={bodyContent}
     />
   );
-}
+};
 
 export default SearchModal;

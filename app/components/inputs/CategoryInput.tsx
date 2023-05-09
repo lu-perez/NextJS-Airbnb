@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { IconType } from 'react-icons'
+import React from 'react';
+import { IconType } from 'react-icons';
 
 interface CategoryInputProps {
   icon: IconType
@@ -37,7 +37,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         {label}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryInput
+export default CategoryInput;

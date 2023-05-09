@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import useCountries from '@/app/hooks/useCountries'
-import React from 'react'
-import Select from 'react-select'
+import useCountries from '@/app/hooks/useCountries';
+import React from 'react';
+import Select from 'react-select';
 
 export type CountrySelectValue = {
   flag: string
@@ -21,7 +21,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
   value,
   onChange
 }) => {
-  const { getAll } = useCountries()
+  const { getAll } = useCountries();
 
   return (
     <div>
@@ -58,7 +58,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
         })}
       />
     </div>
-  )
-}
+  );
+};
 
-export default CountrySelect
+export default CountrySelect;

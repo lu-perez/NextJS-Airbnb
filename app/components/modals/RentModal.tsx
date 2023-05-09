@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React, { useMemo, useState } from 'react'
-import Modal from './Modal'
-import useRentModal from '@/app/hooks/useRentModal'
-import Heading from '../Heading'
-import { categories } from '../navbar/Categories'
-import CategoryInput from '../inputs/CategoryInput'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import CountrySelect from '../inputs/CountrySelect'
-import dynamic from 'next/dynamic'
-import Counter from '../inputs/Counter'
-import ImageUpload from '../inputs/ImageUpload'
-import Input from '../inputs/Input'
-import axios from 'axios'
-import { toast } from 'react-hot-toast'
-import { useRouter } from 'next/navigation'
+import React, { useMemo, useState } from 'react';
+import Modal from './Modal';
+import useRentModal from '@/app/hooks/useRentModal';
+import Heading from '../Heading';
+import { categories } from '../navbar/Categories';
+import CategoryInput from '../inputs/CategoryInput';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import CountrySelect from '../inputs/CountrySelect';
+import dynamic from 'next/dynamic';
+import Counter from '../inputs/Counter';
+import ImageUpload from '../inputs/ImageUpload';
+import Input from '../inputs/Input';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 enum STEPS {
   CATEGORY = 0,
@@ -26,13 +26,13 @@ enum STEPS {
 }
 
 const RentModal = () => {
-  const rentModal = useRentModal()
+  const rentModal = useRentModal();
 
-  const [step, setStep] = useState(STEPS.CATEGORY)
-  const [isLoading, setIsLoading] = useState(false)
+  const [step, setStep] = useState(STEPS.CATEGORY);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { 
-    register, 
+  const {
+    register,
     handleSubmit,
     setValue,
     watch,
@@ -52,75 +52,74 @@ const RentModal = () => {
       title: '',
       description: '',
     }
-  })
+  });
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const category = watch('category')
-  const location = watch('location')
-  const guestCount = watch('guestCount')
-  const roomCount = watch('roomCount')
-  const bathroomCount = watch('bathroomCount')
-  const imageSrc = watch('imageSrc')
-
+  const category = watch('category');
+  const location = watch('location');
+  const guestCount = watch('guestCount');
+  const roomCount = watch('roomCount');
+  const bathroomCount = watch('bathroomCount');
+  const imageSrc = watch('imageSrc');
 
   const Map = useMemo(() => dynamic(() => import('../Map'), {
     ssr: false
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [location])
+  }), [location]);
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
       shouldTouch: true,
       shouldValidate: true
-    })
-  }
+    });
+  };
 
   const onBack = () => {
-    setStep(value => value - 1)
-  }
+    setStep(value => value - 1);
+  };
 
   const onNext = () => {
-    setStep(value => value + 1)
-  }
+    setStep(value => value + 1);
+  };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.PRICE) {
       return onNext();
     }
-    
+
     setIsLoading(true);
 
     axios.post('/api/listings', data)
-    .then(() => {
-      toast.success('Listing created!');
-      router.refresh();
-      reset();
-      setStep(STEPS.CATEGORY)
-      rentModal.onClose();
-    })
-    .catch(() => {
-      toast.error('Something went wrong.');
-    })
-    .finally(() => {
-      setIsLoading(false);
-    })
-  }
+      .then(() => {
+        toast.success('Listing created!');
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY);
+        rentModal.onClose();
+      })
+      .catch(() => {
+        toast.error('Something went wrong.');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
-      return 'Create'
+      return 'Create';
     }
-    return 'Next'
-  }, [step])
+    return 'Next';
+  }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
     if (step === STEPS.CATEGORY) {
-      return undefined
+      return undefined;
     }
-    return 'Back'
-  }, [step])
+    return 'Back';
+  }, [step]);
 
   let bodyContent = (
     <div className='flex flex-col gap-8'>
@@ -150,7 +149,7 @@ const RentModal = () => {
         ))}
       </div>
     </div>
-  )
+  );
 
   if (step === STEPS.LOCATION) {
     bodyContent = (
@@ -167,7 +166,7 @@ const RentModal = () => {
           center={location?.latlng}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.INFO) {
@@ -198,7 +197,7 @@ const RentModal = () => {
           onChange={(value) => setCustomValue('bathroomCount', value)}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.IMAGES) {
@@ -213,7 +212,7 @@ const RentModal = () => {
           onChange={(value) => setCustomValue('imageSrc', value)}
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.DESCRIPTION) {
@@ -241,7 +240,7 @@ const RentModal = () => {
           required
         />
       </div>
-    )
+    );
   }
 
   if (step === STEPS.PRICE) {
@@ -254,15 +253,15 @@ const RentModal = () => {
         <Input
           id="price"
           label="Price"
-          formatPrice 
-          type="number" 
+          formatPrice
+          type="number"
           disabled={isLoading}
           register={register}
           errors={errors}
           required
         />
       </div>
-    )
+    );
   }
 
   return (
@@ -276,7 +275,7 @@ const RentModal = () => {
       title='Airbnb your home!'
       body={bodyContent}
     />
-  )
-}
+  );
+};
 
-export default RentModal
+export default RentModal;

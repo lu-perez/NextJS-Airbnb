@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { IconType } from 'react-icons'
+import { IconType } from 'react-icons';
 
 interface ListingCategoryProps {
   icon: IconType
@@ -27,7 +27,7 @@ const ListingCategory: React.FC<ListingCategoryProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ListingCategory
+export default ListingCategory;

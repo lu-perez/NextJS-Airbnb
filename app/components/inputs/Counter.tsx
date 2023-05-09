@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useCallback } from 'react'
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
+import React, { useCallback } from 'react';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 interface CounterProps {
   title: string
@@ -17,15 +17,15 @@ const Counter: React.FC<CounterProps> = ({
   onChange
 }) => {
   const onAdd = useCallback(() => {
-    onChange(value + 1)
-  }, [onChange, value])
+    onChange(value + 1);
+  }, [onChange, value]);
 
   const onReduce = useCallback(() => {
     if (value === 1) {
-      return
+      return;
     }
-    onChange(value - 1)
-  }, [value, onChange])
+    onChange(value - 1);
+  }, [value, onChange]);
 
   return (
     <div
@@ -79,7 +79,7 @@ const Counter: React.FC<CounterProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Counter
+export default Counter;

@@ -1,39 +1,39 @@
-'use client'
+'use client';
 
-import { AiOutlineMenu } from 'react-icons/ai'
-import Avatar from '../Avatar'
-import React, { useCallback, useState } from 'react'
-import MenuItem from './MenuItem'
-import useRegisterModal from '@/app/hooks/useRegisterModal'
-import useLoginModal from '@/app/hooks/useLoginModal'
-import useRentModal from '@/app/hooks/useRentModal'
-import { signOut } from 'next-auth/react'
-import { SafeUser } from '@/app/types'
-import { useRouter } from 'next/navigation'
+import { AiOutlineMenu } from 'react-icons/ai';
+import Avatar from '../Avatar';
+import React, { useCallback, useState } from 'react';
+import MenuItem from './MenuItem';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
+import useRentModal from '@/app/hooks/useRentModal';
+import { signOut } from 'next-auth/react';
+import { SafeUser } from '@/app/types';
+import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const registerModal = useRegisterModal()
-  const loginModal = useLoginModal()
-  const rentModal = useRentModal()
+  const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
+  const rentModal = useRentModal();
 
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleOpen = useCallback(() => {
-    setIsOpen(value => !value)
-  }, [])
+    setIsOpen(value => !value);
+  }, []);
 
-  const onRent = useCallback(() => { 
+  const onRent = useCallback(() => {
     // if (!currentUser) {
     //   loginModal.onOpen()
     // }
-    rentModal.onOpen()
-  }, [rentModal])
+    rentModal.onOpen();
+  }, [rentModal]);
 
   return (
     <div className='relative'>
@@ -95,39 +95,39 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             <div className='flex flex-col cursor-pointer'>
               {currentUser ? (
                 <>
-                  <MenuItem 
+                  <MenuItem
                     onClick={() => router.push('/trips')}
                     label='My trips'
                   />
-                  <MenuItem 
+                  <MenuItem
                     onClick={() => router.push('/favorites')}
                     label='My favorites'
                   />
-                  <MenuItem 
+                  <MenuItem
                     onClick={() => router.push('/reservations')}
                     label='My reservations'
                   />
-                  <MenuItem 
+                  <MenuItem
                     onClick={() => router.push('/properties')}
                     label='My properties'
                   />
-                  <MenuItem 
+                  <MenuItem
                     onClick={rentModal.onOpen}
                     label='Airbnb my home'
                   />
                   <hr />
-                  <MenuItem 
+                  <MenuItem
                     onClick={() => signOut()}
                     label='Logout'
                   />
                 </>
               ) : (
                 <>
-                  <MenuItem 
+                  <MenuItem
                     onClick={loginModal.onOpen}
                     label='Sign in'
                   />
-                  <MenuItem 
+                  <MenuItem
                     onClick={registerModal.onOpen}
                     label='Sign up'
                   />
@@ -138,7 +138,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         )
       }
     </div>
-  )
-}
+  );
+};
 
-export default UserMenu
+export default UserMenu;
